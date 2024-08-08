@@ -2,8 +2,6 @@ from selenium import webdriver
 import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.action_chains import ActionChains
 
 options = webdriver.EdgeOptions()
 options.add_experimental_option("excludeSwitches", ["enable-logging"])
@@ -13,8 +11,7 @@ driver.get("https://www.vivus.ru/")    # открытие браузера с н
 
 
 original_window = driver.current_window_handle
-actions = ActionChains(driver)
-for a in range(1, 6):
+for a in range(1, 6):       # Пробежка по нужной колонке на сайте
     element = driver.find_element(By.XPATH, f'/html/body/footer/div/div/div[1]/p/a[{a}]')     # поиск элемента страницы с помощью XPATH
     driver.execute_script("arguments[0].scrollIntoView(true);", element)    # прокрутка страницы до определенного элемента
     time.sleep(2)
